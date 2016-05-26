@@ -1,0 +1,29 @@
+CC = cc
+CFLAGS = -Wall
+# -g
+
+#Define any directories containing header files other than /usr/include
+#INCLUDES = -I/home/
+INCLUDES = -I /usr/local/Cellar/libcouchbase/2.4.2/include
+
+
+# define library paths in addition to the /usr/lib
+LFLAGS = -L /usr/local/Cellar/libcouchbase/2.4.2/lib/
+
+#any libraries to link into executable
+LIBS = -l couchbase
+
+# C source files
+SRCS =	gets_and_replicas.c
+
+#define executable file
+MAIN = gets_and_replicas
+
+all:	$(MAIN)
+	@echo Couchbase client to test get and get repicas complied successfully
+
+$(MAIN): $(SRCS)
+	$(CC) $(CFLAGS) -o $(MAIN) $(SRCS) $(INCLUDES) $(LFLAGS) $(LIBS)
+clean:
+	$(RM) *.o *~ $(MAIN)
+  

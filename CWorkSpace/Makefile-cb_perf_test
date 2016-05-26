@@ -1,0 +1,27 @@
+CC = cc
+CFLAGS = -Wall
+# -g
+
+#Define any directories containing header files other than /usr/include
+#INCLUDES = -I/home/
+
+# define library paths in addition to the /usr/lib
+LFLAGS = -L /usr/local/Cellar/libcouchbase/2.4.2/include/
+
+#any libraries to link into executable
+LIBS = -l couchbase
+
+# C source files
+SRCS =	cb_perf_test.cpp
+
+#define executable file
+MAIN = cb_perf_test
+
+all:	$(MAIN)
+	@echo Simple couchbase client to connect and print has been compiled
+
+$(MAIN): $(SRCS)
+	$(CC) $(CFLAGS) -o $(MAIN) $(SRCS) $(LFLAGS) $(LIBS)
+clean:
+	$(RM) *.o *~ $(MAIN)
+  
